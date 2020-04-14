@@ -10,3 +10,9 @@ C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\P
 C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ProgaDZ\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.csproj.CoreCompileInputs.cache
 C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ProgaDZ\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.dll
 C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ProgaDZ\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.pdb
+C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ConverterHomework\TOPSECRET_2\CsvToJsonLibrary\bin\Debug\CsvToJsonLibrary.dll
+C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ConverterHomework\TOPSECRET_2\CsvToJsonLibrary\bin\Debug\CsvToJsonLibrary.pdb
+C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ConverterHomework\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.csprojAssemblyReference.cache
+C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ConverterHomework\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.csproj.CoreCompileInputs.cache
+C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ConverterHomework\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.dll
+C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ConverterHomework\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.pdb

@@ -11,8 +11,10 @@ namespace ConverterForm
 {
 	public partial class Form1 : Form
 	{
+		/// <summary>
+		/// Загруженные данные
+		/// </summary>
 		List<FileRecord> records;
-		DataTable table;
 
 		string csvPath = FileConstants.DEFAULT_FILE_NAME;
 
@@ -24,8 +26,10 @@ namespace ConverterForm
 		int CURRENT_PAGE = 0;
 		int MAX_PAGE = 0;
 
+		/// <summary>
+		/// Текущие отображаемые данные
+		/// </summary>
 		List<FileRecord> CURRENT_DATA;
-
 
 		public Form1()
 		{
@@ -37,6 +41,9 @@ namespace ConverterForm
 			LoadDesign();
 		}
 
+		/// <summary>
+		/// Предлагает указать путь до CSV-файла
+		/// </summary>
 		private void csvPathButton_Click(object sender, EventArgs e)
 		{
 			OpenFileDialog OFD = new OpenFileDialog
@@ -54,6 +61,9 @@ namespace ConverterForm
 			}
 		}
 
+		/// <summary>
+		/// Предлагает указать папку для JSON-файла
+		/// </summary>
 		private void jsonPathButton_Click(object sender, EventArgs e)
 		{
 			FolderBrowserDialog FBD = new FolderBrowserDialog {
@@ -67,6 +77,9 @@ namespace ConverterForm
 
 		}
 
+		/// <summary>
+		/// Загружает данные в DataGridView
+		/// </summary>
 		private void setDataButton_Click(object sender, EventArgs e)
 		{
 			CSVReader reader = new CSVReader(csvPath);
@@ -88,19 +101,34 @@ namespace ConverterForm
 			// Альтернативное решение: FillWithBindingList();
 		}
 
+		/// <summary>
+		/// Записывает отображаемые данные в файл
+		/// </summary>
 		private void convertButton_Click(object sender, EventArgs e)
 		{
 			WriteToJson(CURRENT_DATA);
 		}
 
+		/// <summary>
+		/// Записывает все выгруженные данные в файл
+		/// </summary>
 		private void convertAllButton_Click(object sender, EventArgs e)
 		{
 			WriteToJson(records);
 		}
 
+		/// <summary>
+		/// Сортирует таблицу по убыванию по выделенной клетке (т.е. колонке)
+		/// </summary>
 		private void sortButton_Click(object sender, EventArgs e)
 		{
-
+			if (records != null && recordGridView.SelectedCells.Count != 0)
+			{
+				DataTable dt = recordGridView.DataSource as DataTable;
+				dt.DefaultView.Sort = $"{recordGridView.Columns[recordGridView.SelectedCells[0].ColumnIndex].Name} desc";
+				dt = dt.DefaultView.ToTable();
+				recordGridView.DataSource = dt;
+			}
 		}
 
 		private void recordGridView_DataError(object sender, DataGridViewDataErrorEventArgs anError)
@@ -108,14 +136,20 @@ namespace ConverterForm
 			MessageBox.Show($"Недопустимое значение в ячейке [{anError.RowIndex + 1}, {anError.ColumnIndex + 1}].");
 		}
 
+		/// <summary>
+		/// Обработчик ошибки чтения/записи
+		/// </summary>
 		private void ErrorHandler(string message)
 		{
 			MessageBox.Show(message);
 		}
 
+		/// <summary>
+		/// Заполняет данными DataGridView с помощью DataTable
+		/// </summary>
 		private void FillGridView(List<FileRecord> recordsToDisplay)
 		{
-			table = new DataTable();
+			DataTable table = new DataTable();
 			string[] columnNames = FileConstants.DEFAULT_COLUMNS_NAMES.Split(FileConstants.DELIMETER);
 			for(int i = 0; i < FileConstants.COLUMNS_NUMBER; i++)
 			{
@@ -131,6 +165,9 @@ namespace ConverterForm
 			recordGridView.DataSource = table;
 		}
 
+		/// <summary>
+		/// Заполняет данными DataGridView с помощью BindingList (альтернатива, не используется)
+		/// </summary>
 		private void FillWithBindingList()
 		{
 			BindingList<FileRecord> dataSource= new BindingList<FileRecord>();
@@ -141,6 +178,9 @@ namespace ConverterForm
 			}
 		}
 
+		/// <summary>
+		/// Записывает данные в JSON файл
+		/// </summary>
 		private void WriteToJson(List<FileRecord> recordsToWrite)
 		{
 			string name = jsonNameBox.Text;
@@ -149,6 +189,7 @@ namespace ConverterForm
 				if (recordsToWrite != null)
 				{
 					JsonWriter writer = new JsonWriter($"{jsonPathRoot}{Path.DirectorySeparatorChar}{name}.json");
+					writer.onError += ErrorHandler;
 					writer.WriteToJson(records);
 				}
 				else
@@ -162,6 +203,9 @@ namespace ConverterForm
 			}
 		}
 
+		/// <summary>
+		/// Устанавливает текст в элементы интерфейса
+		/// </summary>
 		private void LoadDesign()
 		{
 			csvPathBox.Text = csvPath;
@@ -169,11 +213,17 @@ namespace ConverterForm
 			jsonNameBox.Text = jsonFileName;
 		}
 
+		/// <summary>
+		/// Обновляет номер страницы
+		/// </summary>
 		private void UpdatePageText()
 		{
 			pageBox.Text = $"{CURRENT_PAGE + 1}/{MAX_PAGE + 1}";
 		}
 
+		/// <summary>
+		/// Переходит на предыдущую страницу
+		/// </summary>
 		private void previousButton_Click(object sender, EventArgs e)
 		{
 			if(CURRENT_PAGE > 0)
@@ -186,6 +236,9 @@ namespace ConverterForm
 			}
 		}
 
+		/// <summary>
+		/// Переходит на следующую страницу
+		/// </summary>
 		private void nextButton_Click(object sender, EventArgs e)
 		{
 			if (CURRENT_PAGE < MAX_PAGE)
