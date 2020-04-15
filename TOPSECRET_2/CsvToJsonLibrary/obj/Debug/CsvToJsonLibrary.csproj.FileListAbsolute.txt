@@ -16,3 +16,9 @@ C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\C
 C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ConverterHomework\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.csproj.CoreCompileInputs.cache
 C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ConverterHomework\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.dll
 C:\Users\User\A\Education\_FCS\Программирование\ДЗ\PROJECT_2\ConverterHomework\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.pdb
+C:\Users\t9263\Downloads\ConverterHomework-master\ConverterHomework-master\TOPSECRET_2\CsvToJsonLibrary\bin\Debug\CsvToJsonLibrary.dll
+C:\Users\t9263\Downloads\ConverterHomework-master\ConverterHomework-master\TOPSECRET_2\CsvToJsonLibrary\bin\Debug\CsvToJsonLibrary.pdb
+C:\Users\t9263\Downloads\ConverterHomework-master\ConverterHomework-master\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.csprojAssemblyReference.cache
+C:\Users\t9263\Downloads\ConverterHomework-master\ConverterHomework-master\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.csproj.CoreCompileInputs.cache
+C:\Users\t9263\Downloads\ConverterHomework-master\ConverterHomework-master\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.dll
+C:\Users\t9263\Downloads\ConverterHomework-master\ConverterHomework-master\TOPSECRET_2\CsvToJsonLibrary\obj\Debug\CsvToJsonLibrary.pdb

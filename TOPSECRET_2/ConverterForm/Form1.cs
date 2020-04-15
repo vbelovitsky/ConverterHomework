@@ -74,7 +74,6 @@ namespace ConverterForm
 				jsonPathRoot = FBD.SelectedPath;
 				jsonPathBox.Text = jsonPathRoot;
 			}
-
 		}
 
 		/// <summary>
@@ -91,12 +90,12 @@ namespace ConverterForm
 				return;
 			}
 
-			int remainder;
-			MAX_PAGE = Math.DivRem(records.Count, ITEMS_PER_PAGE, out remainder) + (remainder == 0 ? 0 : 1);
+			MAX_PAGE = Math.DivRem(records.Count, ITEMS_PER_PAGE, out int remainder) + (remainder == 0 ? 0 : 1);
 			MAX_PAGE--;
 			UpdatePageText();
 
-			CURRENT_DATA = records.GetRange(CURRENT_PAGE, ITEMS_PER_PAGE);
+			int itemCount = Math.Min(ITEMS_PER_PAGE, records.Count);
+			CURRENT_DATA = records.GetRange(0, itemCount);
 			FillGridView(CURRENT_DATA);
 			// Альтернативное решение: FillWithBindingList();
 		}
@@ -141,7 +140,10 @@ namespace ConverterForm
 		/// </summary>
 		private void ErrorHandler(string message)
 		{
-			MessageBox.Show(message);
+			MessageBox.Show(message,
+				"Ошибка",
+				MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -190,7 +192,7 @@ namespace ConverterForm
 				{
 					JsonWriter writer = new JsonWriter($"{jsonPathRoot}{Path.DirectorySeparatorChar}{name}.json");
 					writer.onError += ErrorHandler;
-					writer.WriteToJson(records);
+					writer.WriteToJson(recordsToWrite);
 				}
 				else
 				{
@@ -228,10 +230,10 @@ namespace ConverterForm
 		{
 			if(CURRENT_PAGE > 0)
 			{
-				CURRENT_DATA = records.GetRange(ITEMS_PER_PAGE * (CURRENT_PAGE - 1), ITEMS_PER_PAGE);
+				--CURRENT_PAGE;
+				CURRENT_DATA = records.GetRange(ITEMS_PER_PAGE * CURRENT_PAGE, ITEMS_PER_PAGE);
 				FillGridView(CURRENT_DATA);
-
-				CURRENT_PAGE--;
+				
 				UpdatePageText();
 			}
 		}
@@ -243,13 +245,12 @@ namespace ConverterForm
 		{
 			if (CURRENT_PAGE < MAX_PAGE)
 			{
-				int itemCount = ITEMS_PER_PAGE * (CURRENT_PAGE + 1) + ITEMS_PER_PAGE - 1 <= records.Count ?
-					ITEMS_PER_PAGE : records.Count - ITEMS_PER_PAGE * (CURRENT_PAGE + 1);
+				++CURRENT_PAGE;
+				int itemCount = Math.Min(ITEMS_PER_PAGE, records.Count - ITEMS_PER_PAGE * CURRENT_PAGE);
 
-				CURRENT_DATA = records.GetRange(ITEMS_PER_PAGE * (CURRENT_PAGE + 1), itemCount);
+				CURRENT_DATA = records.GetRange(ITEMS_PER_PAGE * CURRENT_PAGE, itemCount);
 				FillGridView(CURRENT_DATA);
 
-				CURRENT_PAGE++;
 				UpdatePageText();
 			}
 		}
